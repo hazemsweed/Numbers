@@ -10,16 +10,20 @@ NumbersRouter.route("/")
     res.sendStatus(200);
   })
   // GET /numbers
-  .get(cors.corsWithOptions, async (_req, res, next) => {
-    try {
-      const { data } = await axios.get(config.data_url);
-      if (!data) {
-        return res.status(404).json({ message: "Data not found" });
+  .get(
+    cors.corsWithOptions,
+    authenticate.verifyUser,
+    async (_req, res, next) => {
+      try {
+        const { data } = await axios.get(config.data_url);
+        if (!data) {
+          return res.status(404).json({ message: "Data not found" });
+        }
+        res.json(data);
+      } catch (err) {
+        next(err); // delegated to error-handling middleware
       }
-      res.json(data);
-    } catch (err) {
-      next(err); // delegated to error-handling middleware
     }
-  });
+  );
 
 module.exports = NumbersRouter;
