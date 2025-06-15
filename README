@@ -1,0 +1,12 @@
+git clone <your-repo-url>
+cd server # folder that contains package.json for the API
+npm install # installs dependencies
+
+# create a .env file at /server root with at least:
+
+DATABASE_URL=mongodb://localhost:27017/temp-numbers
+SECRET_KEY=super-secret-jwt-key
+DATA_URL=https://quackr.free.beeceptor.com/numbers
+PORT=9090 # or any free port
+
+npm start # starts the Express server
