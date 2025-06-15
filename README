@@ -1,4 +1,4 @@
-git clone <your-repo-url>
+git clone https://github.com/hazemsweed/Numbers.git
 cd server # folder that contains package.json for the API
 npm install # installs dependencies
 
